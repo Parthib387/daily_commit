@@ -1,0 +1,24 @@
+name: daily__commit
+
+on:
+  schedule:
+    - cron: '10 12 * * *' # Runs every day at 09:15 UTC
+
+jobs:
+  commit-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Update file (24f2008883@ds.study.iitm.ac.in)
+        run: |
+          echo "Last run: $(date -u)" > last-run.txt
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add last-run.txt
+          git commit -m "Daily update: $(date -u)"
+          git push
