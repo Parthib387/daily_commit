@@ -2,7 +2,7 @@ name: daily__commit
 
 on:
   schedule:
-    - cron: '20 12 * * *' # Runs every day at 09:15 UTC
+    - cron: '24 12 * * *' # Runs every day at 09:15 UTC
 
 jobs:
   commit-job:
